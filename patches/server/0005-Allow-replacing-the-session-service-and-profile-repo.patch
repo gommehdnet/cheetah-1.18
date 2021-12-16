@@ -1,0 +1,65 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: lukas81298 <lukas81298@gommehd.net>
+Date: Wed, 1 Dec 2021 14:33:15 +0100
+Subject: [PATCH] Allow replacing the session service and profile repository
+
+
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index 6553d622c3bd5be7878ed2585988decc3cddd007..8569fc158609969017e4f7cd2f0a4b89ec3c63b7 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -258,9 +258,9 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+     private String resourcePackHash;
+     private volatile boolean isReady;
+     private long lastOverloadWarning;
+-    private final MinecraftSessionService sessionService;
++    private MinecraftSessionService sessionService; // Cheetah: private final -> private
+     @Nullable
+-    private final GameProfileRepository profileRepository;
++    private GameProfileRepository profileRepository; // Cheetah: private final -> private
+     @Nullable
+     private final GameProfileCache profileCache;
+     private long lastServerStatus;
+@@ -1989,6 +1989,16 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+         return this.profileRepository;
+     }
+ 
++    // Cheetah start
++    public void setSessionService(MinecraftSessionService sessionService) {
++        this.sessionService = sessionService;
++    }
++
++    public void setProfileRepository(GameProfileRepository profileRepository) {
++        this.profileRepository = profileRepository;
++    }
++    // Cheetah end
++
+     public GameProfileCache getProfileCache() {
+         return this.profileCache;
+     }
+diff --git a/src/main/java/net/minecraft/server/players/GameProfileCache.java b/src/main/java/net/minecraft/server/players/GameProfileCache.java
+index 4e2833dc941863cc54416c81f09c688b5616d7a4..0f120db4b226d84f2051d255f02aa85743fb90da 100644
+--- a/src/main/java/net/minecraft/server/players/GameProfileCache.java
++++ b/src/main/java/net/minecraft/server/players/GameProfileCache.java
+@@ -55,7 +55,7 @@ public class GameProfileCache {
+     private final Map<String, GameProfileCache.GameProfileInfo> profilesByName = Maps.newConcurrentMap();
+     private final Map<UUID, GameProfileCache.GameProfileInfo> profilesByUUID = Maps.newConcurrentMap();
+     private final Map<String, CompletableFuture<Optional<GameProfile>>> requests = Maps.newConcurrentMap();
+-    private final GameProfileRepository profileRepository;
++    private GameProfileRepository profileRepository; // Cheetah: private final -> private
+     private final Gson gson = (new GsonBuilder()).create();
+     private final File file;
+     private final AtomicLong operationCount = new AtomicLong();
+@@ -73,6 +73,12 @@ public class GameProfileCache {
+         Lists.reverse(this.load()).forEach(this::safeAdd);
+     }
+ 
++    // Cheetah start
++    public void setProfileRepository(GameProfileRepository gameProfileRepository) {
++        this.profileRepository = gameProfileRepository;
++    }
++    // Cheetah end
++
+     private void safeAdd(GameProfileCache.GameProfileInfo entry) {
+         try { this.stateLock.lock(); // Paper - allow better concurrency
+         GameProfile gameprofile = entry.getProfile();

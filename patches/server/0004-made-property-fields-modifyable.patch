@@ -1,0 +1,126 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: lukas81298 <lukas81298@gommehd.net>
+Date: Wed, 1 Dec 2021 14:30:10 +0100
+Subject: [PATCH] made property fields modifyable
+
+
+diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServerProperties.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServerProperties.java
+index f944e6beafc7876ed9c6923a22f58d82967b77cb..5a9cdf90d191f339c793d92114ccc6ff155a7cc3 100644
+--- a/src/main/java/net/minecraft/server/dedicated/DedicatedServerProperties.java
++++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServerProperties.java
+@@ -14,63 +14,63 @@ import net.minecraft.world.level.levelgen.WorldGenSettings;
+ 
+ public class DedicatedServerProperties extends Settings<DedicatedServerProperties> {
+ 
+-    public final boolean debug = this.get("debug", false); // CraftBukkit
+-    public final boolean onlineMode = this.get("online-mode", true);
+-    public final boolean preventProxyConnections = this.get("prevent-proxy-connections", false);
+-    public final String serverIp = this.get("server-ip", "");
+-    public final boolean spawnAnimals = this.get("spawn-animals", true);
+-    public final boolean spawnNpcs = this.get("spawn-npcs", true);
+-    public final boolean pvp = this.get("pvp", true);
+-    public final boolean allowFlight = this.get("allow-flight", false);
+-    public final String resourcePack = this.get("resource-pack", "");
+-    public final boolean requireResourcePack = this.get("require-resource-pack", false);
+-    public final String resourcePackPrompt = this.get("resource-pack-prompt", "");
+-    public final String motd = this.get("motd", "A Minecraft Server");
+-    public final boolean forceGameMode = this.get("force-gamemode", false);
+-    public final boolean enforceWhitelist = this.get("enforce-whitelist", false);
+-    public final Difficulty difficulty;
+-    public final GameType gamemode;
+-    public final String levelName;
+-    public final int serverPort;
++    public boolean debug = this.get("debug", false); // CraftBukkit
++    public boolean onlineMode = this.get("online-mode", true);
++    public boolean preventProxyConnections = this.get("prevent-proxy-connections", false);
++    public String serverIp = this.get("server-ip", "");
++    public boolean spawnAnimals = this.get("spawn-animals", true);
++    public boolean spawnNpcs = this.get("spawn-npcs", true);
++    public boolean pvp = this.get("pvp", true);
++    public boolean allowFlight = this.get("allow-flight", false);
++    public String resourcePack = this.get("resource-pack", "");
++    public boolean requireResourcePack = this.get("require-resource-pack", false);
++    public String resourcePackPrompt = this.get("resource-pack-prompt", "");
++    public String motd = this.get("motd", "A Minecraft Server");
++    public boolean forceGameMode = this.get("force-gamemode", false);
++    public boolean enforceWhitelist = this.get("enforce-whitelist", false);
++    public Difficulty difficulty;
++    public GameType gamemode;
++    public String levelName;
++    public int serverPort;
+     @Nullable
+-    public final Boolean announcePlayerAchievements;
+-    public final boolean enableQuery;
+-    public final int queryPort;
+-    public final boolean enableRcon;
+-    public final int rconPort;
+-    public final String rconPassword;
++    public Boolean announcePlayerAchievements;
++    public boolean enableQuery;
++    public int queryPort;
++    public boolean enableRcon;
++    public int rconPort;
++    public String rconPassword;
+     @Nullable
+-    public final String resourcePackHash;
+-    public final String resourcePackSha1;
+-    public final boolean hardcore;
+-    public final boolean allowNether;
+-    public final boolean spawnMonsters;
+-    public final boolean useNativeTransport;
+-    public final boolean enableCommandBlock;
+-    public final int spawnProtection;
+-    public final int opPermissionLevel;
+-    public final int functionPermissionLevel;
+-    public final long maxTickTime;
+-    public final int rateLimitPacketsPerSecond;
+-    public final int viewDistance;
+-    public final int simulationDistance;
+-    public final int maxPlayers;
+-    public final int networkCompressionThreshold;
+-    public final boolean broadcastRconToOps;
+-    public final boolean broadcastConsoleToOps;
+-    public final int maxWorldSize;
+-    public final boolean syncChunkWrites;
+-    public final boolean enableJmxMonitoring;
+-    public final boolean enableStatus;
+-    public final boolean hideOnlinePlayers;
+-    public final int entityBroadcastRangePercentage;
+-    public final String textFilteringConfig;
+-    public final Settings<DedicatedServerProperties>.MutableValue<Integer> playerIdleTimeout;
+-    public final Settings<DedicatedServerProperties>.MutableValue<Boolean> whiteList;
++    public String resourcePackHash;
++    public String resourcePackSha1;
++    public boolean hardcore;
++    public boolean allowNether;
++    public boolean spawnMonsters;
++    public boolean useNativeTransport;
++    public boolean enableCommandBlock;
++    public int spawnProtection;
++    public int opPermissionLevel;
++    public int functionPermissionLevel;
++    public long maxTickTime;
++    public int rateLimitPacketsPerSecond;
++    public int viewDistance;
++    public int simulationDistance;
++    public int maxPlayers;
++    public int networkCompressionThreshold;
++    public boolean broadcastRconToOps;
++    public boolean broadcastConsoleToOps;
++    public int maxWorldSize;
++    public boolean syncChunkWrites;
++    public boolean enableJmxMonitoring;
++    public boolean enableStatus;
++    public boolean hideOnlinePlayers;
++    public int entityBroadcastRangePercentage;
++    public String textFilteringConfig;
++    public Settings<DedicatedServerProperties>.MutableValue<Integer> playerIdleTimeout;
++    public Settings<DedicatedServerProperties>.MutableValue<Boolean> whiteList;
+     @Nullable
+     private WorldGenSettings worldGenSettings;
+ 
+-    public final String rconIp; // Paper - Add rcon ip
++    public String rconIp; // Paper - Add rcon ip
+ 
+     // CraftBukkit start
+     public DedicatedServerProperties(Properties properties, OptionSet optionset) {
