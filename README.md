@@ -16,11 +16,13 @@ Currently, it is not possible to add a dependency containing NMS code, the API, 
 Thus, changes to the NMS code will not be reflected to plugins using it.
 - Run `./gradlew publishToMavenLocal`
 - Add the following maven dependency:
-  ``<dependency>
+```
+<dependency>
   <groupId>net.gommehd.cheetah</groupId>
   <artifactId>cheetah-api</artifactId>
   <version>1.18-R0.1-SNAPSHOT</version>
-  </dependency>``
+</dependency>
+```
 
 ## How to apply changes
 - First apply the patches using `./gradlew applyPatches`
