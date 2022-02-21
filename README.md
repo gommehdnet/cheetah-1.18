@@ -5,29 +5,23 @@ This is a fork of PaperSpigot tailored for the use at GommeHD.net
 ## How to build
 - Clone this repository
 - Open a shell (e.g. using Git Bash on Windows)
+- On Windows, make sure that `git config core.longpaths true` is set for this project
 - Run `./gradlew applyPatches` to apply the patches
 - Run `./gradlew build` to build the jar files
 - Run `./gradlew createReobfBundlerJar` to create the final jar file
 - The final jar file can be found in `build/libs/cheetah-1.18-bundler-1.18.1-R0.1-SNAPSHOT-reobf.jar`
 
 ## How to use the API with Maven?
-- Run `./gradlew publishMavenPublicationToMavenLocal` after building
+Currently, it is not possible to add a dependency containing NMS code, the API, and dependencies to the classpath. The current solution is to use the cheetah API combined with the normal Spigot NMS. 
+Thus, changes to the NMS code will not be reflected to plugins using it.
+- Run `./gradlew publishToMavenLocal`
 - Add the following maven dependency:
-```xml
-<dependency>
-    <groupId>net.gommehd.cheetah</groupId>
-    <artifactId>cheetah-api</artifactId>
-    <version>1.18.1-R0.1-SNAPSHOT</version>
-</dependency>
-```
-- If accessing NMS code is required as well, add the server dependency along with the `cheetah-api` dependency:
-```xml
-<dependency>
-    <groupId>net.gommehd.cheetah</groupId>
-    <artifactId>cheetah-server</artifactId>
-    <version>1.18.1-R0.1-SNAPSHOT</version>
-</dependency>
-  ```
+  ``<dependency>
+  <groupId>net.gommehd.cheetah</groupId>
+  <artifactId>cheetah-api</artifactId>
+  <version>1.18-R0.1-SNAPSHOT</version>
+  </dependency>``
+
 ## How to apply changes
 - First apply the patches using `./gradlew applyPatches`
 - Perform the changes to the code
