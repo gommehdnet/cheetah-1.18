@@ -5,10 +5,10 @@ Subject: [PATCH] Allow replacing the session service and profile repository
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 6553d622c3bd5be7878ed2585988decc3cddd007..8569fc158609969017e4f7cd2f0a4b89ec3c63b7 100644
+index e074b31b87db711f5cb4f837f64b8de34b7ec8a4..f6bc84f706e5e152bed3862cb9ec8938fde4316d 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -258,9 +258,9 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+@@ -257,9 +257,9 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
      private String resourcePackHash;
      private volatile boolean isReady;
      private long lastOverloadWarning;
@@ -20,7 +20,7 @@ index 6553d622c3bd5be7878ed2585988decc3cddd007..8569fc158609969017e4f7cd2f0a4b89
      @Nullable
      private final GameProfileCache profileCache;
      private long lastServerStatus;
-@@ -1989,6 +1989,16 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+@@ -1977,6 +1977,16 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
          return this.profileRepository;
      }
  
@@ -38,7 +38,7 @@ index 6553d622c3bd5be7878ed2585988decc3cddd007..8569fc158609969017e4f7cd2f0a4b89
          return this.profileCache;
      }
 diff --git a/src/main/java/net/minecraft/server/players/GameProfileCache.java b/src/main/java/net/minecraft/server/players/GameProfileCache.java
-index 4e2833dc941863cc54416c81f09c688b5616d7a4..0f120db4b226d84f2051d255f02aa85743fb90da 100644
+index 9259eeea54d77ddecf044edf80e0eca6cb95278f..2628cc2cefc89949c67947fe25afa16dfa1ff84e 100644
 --- a/src/main/java/net/minecraft/server/players/GameProfileCache.java
 +++ b/src/main/java/net/minecraft/server/players/GameProfileCache.java
 @@ -55,7 +55,7 @@ public class GameProfileCache {

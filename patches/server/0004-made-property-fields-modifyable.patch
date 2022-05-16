@@ -5,10 +5,10 @@ Subject: [PATCH] made property fields modifyable
 
 
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServerProperties.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServerProperties.java
-index f944e6beafc7876ed9c6923a22f58d82967b77cb..5a9cdf90d191f339c793d92114ccc6ff155a7cc3 100644
+index ebfaa8d5de5b905bd2dd7778728b8c9939d01252..de75855b364081497c23e660cd63738c9b6a2c05 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServerProperties.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServerProperties.java
-@@ -14,63 +14,63 @@ import net.minecraft.world.level.levelgen.WorldGenSettings;
+@@ -17,64 +17,64 @@ import net.minecraft.world.level.levelgen.WorldGenSettings;
  
  public class DedicatedServerProperties extends Settings<DedicatedServerProperties> {
  
@@ -89,6 +89,7 @@ index f944e6beafc7876ed9c6923a22f58d82967b77cb..5a9cdf90d191f339c793d92114ccc6ff
 -    public final String textFilteringConfig;
 -    public final Settings<DedicatedServerProperties>.MutableValue<Integer> playerIdleTimeout;
 -    public final Settings<DedicatedServerProperties>.MutableValue<Boolean> whiteList;
+-    private final DedicatedServerProperties.WorldGenProperties worldGenProperties;
 +    public String resourcePackHash;
 +    public String resourcePackSha1;
 +    public boolean hardcore;
@@ -116,6 +117,7 @@ index f944e6beafc7876ed9c6923a22f58d82967b77cb..5a9cdf90d191f339c793d92114ccc6ff
 +    public String textFilteringConfig;
 +    public Settings<DedicatedServerProperties>.MutableValue<Integer> playerIdleTimeout;
 +    public Settings<DedicatedServerProperties>.MutableValue<Boolean> whiteList;
++    public DedicatedServerProperties.WorldGenProperties worldGenProperties;
      @Nullable
      private WorldGenSettings worldGenSettings;
  
